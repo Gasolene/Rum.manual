@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Export Package" default="build.package">
+
+	<!-- config -->
+	<property name="rum.path"					value="../Rum.web" />
+	<property name="framework.path"				value="../Rum.framework" />
+
+	<!-- exclude files -->
+	<patternset id="package.include.files">
+		<exclude name=".svn" />
+		<exclude name=".git" />
+		<exclude name=".gitignore" />
+		<exclude name="nbproject/**" />
+		<exclude name="export-package.xml" />
+	</patternset>
+
+	<target name="build.package" description="Build package and update source files">
+
+		<copy todir="${rum.path}/public/docs/user-guide" overwrite="true">
+			<fileset dir=".">
+				<patternset refid="package.include.files" />
+			</fileset>
+		</copy>
+
+		<copy todir="${framework.path}/docs/user-guide" overwrite="true">
+			<fileset dir=".">
+				<patternset refid="package.include.files" />
+			</fileset>
+		</copy>
+
+	</target>
+
+</project>
